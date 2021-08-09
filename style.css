@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+.panel {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    width: 30%;
+    height: 320px;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+#message-log-panel {
+    overflow-y: scroll;
+    border-radius: 1rem 0 0 1rem;
+    margin-right: 2px;
+}
+
+#message-log-panel ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#message-log-panel ol li {
+    list-style: none;
+}
+
+
+#clicker-panel {
+    border-radius: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#clicker-panel div {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#clicker-panel #counter {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#clicker-panel #button {
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 48px;
+}
+
+#shop-panel {
+    margin-left: 2px;
+    border-radius: 0 1rem 1rem 0;
+}
+
+#shop-panel ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#shop-panel ul li {
+    margin-bottom: 0.5rem;
+}
+
+#shop-panel button {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+#shop-panel .unaffordable {
+    background-color: lightgray;
+    cursor: not-allowed;
+    border-color: red;
+    color: red;
+}
+
+#shop-panel .affordable {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-color: black;
+}
+
+#shop-panel button {
+    width: 100%;
+    text-align: left;
+}
+
+.shop-item-name {
+    display: inline-block;
+    text-align: left;
+    width: 50%;
+}
+
+.shop-item-cost {
+    display: inline-block;
+    width: 20%;
+}
