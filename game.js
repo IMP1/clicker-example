@@ -1,3 +1,7 @@
+// # Upgrade List
+// I chose that the upgrades would have a base cost and subsequent ones would 
+// be scaled up in cost, and that they would only show up if the condition is
+// met (ie. the function returns true at the current time)
 const UPGRADES = [
     {
         name: "Increment 1",
@@ -26,6 +30,8 @@ const UPGRADES = [
         base_cost: 200,
         cost_multiplier: 7.0 / 6,
         condition: function() {
+            // Only show this upgrade if at least one 'Increment 2' upgrade 
+            // has been bought
             return active_upgrades.some(upgrade => upgrade.name == "Increment 2");
         },
         action: function() {
@@ -34,6 +40,9 @@ const UPGRADES = [
     },
 ];
 
+// # Trigger List
+// These happen when the condition is met and perform their action.
+// They can be anything, really.
 const TRIGGERS = [
     {
         condition: function() {
@@ -53,16 +62,22 @@ const TRIGGERS = [
     },
 ];
 
+// How many Numbers the player currently has
 let count = 0;
+// How many fractions of a Number the player has
 let partial_count = 0;
+// The current active upgrades
 let active_upgrades = [];
+// How many Numbers (per second) the player is getting automatically
 let increment = 0;
 
+// This is called when the button is clicked by the player 
 function click() {
     count += 1;
     refresh();
 }
 
+// This is called every second
 function tick() {
     partial_count += increment;
     if (partial_count >= 1) {
@@ -79,6 +94,8 @@ function tick() {
     refresh();
 }
 
+// This repopulated the upgrade list and makes sure that all information
+// being shown to the player is up-to-date
 function refresh() {
     let count_message = count.toString() + " Number";
     if (count != 1) {
@@ -123,7 +140,6 @@ function populate_upgrades() {
             name.classList.add("shop-item-name");
             let cost = document.createElement("span");
             let active_instances = active_upgrades.filter(u => u.name == upgrade.name).length;
-            console.log(upgrade.base_cost, active_instances);
             let calculated_cost = Math.round(upgrade.base_cost * Math.pow(upgrade.cost_multiplier, active_instances));
             cost.innerText = calculated_cost;
             cost.classList.add("shop-item-cost");
@@ -154,11 +170,15 @@ function add_message(message) {
 }
 
 function setup() {
+    // Set the button's action to the `click` function
     document.getElementById("button").onclick = click;
     populate_upgrades();
     refresh();
+    // Set the `tick` function to run every 1000 ms (1 second)
     setInterval(tick, 1000);
     add_message("Hi Alex");
 }
 
+// This ensures that the setup method is called when the webpage has finished
+// loading
 window.onload = setup;
